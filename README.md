@@ -1,2 +1,2 @@
-# yoss
-Smart Search plugin for Webasyst Shop-Script 5
+# Smart Search
+plugin for Webasyst Shop-Script 5
