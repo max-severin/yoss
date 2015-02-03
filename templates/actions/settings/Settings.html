@@ -1,0 +1,74 @@
+<h1>Умный поиск</h1>
+<div class="fields form">
+    <form action="?module=plugins&id=yoss&action=save" method="post" id="plugins-settings-form">
+        {$wa->csrf()}
+
+        <div class="field">
+            <div class="name">
+                Статус плагина
+            </div>
+            <div class="value">
+                <select name="shop_yoss[status]">
+                    <option {if isset($settings.status) &&  $settings.status == 0} selected="selected"{/if} value="0">Выключен</option>
+                    <option {if isset($settings.status) && $settings.status == 1} selected="selected"{/if} value="1">Включен</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Количество товаров в результатах поиска
+            </div>
+            <div class="value">
+                <input type="text" name="shop_yoss[productLimit]" value="{if isset($settings.productLimit)}{$settings.productLimit}{/if}"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Количество брендов в результатах поиска
+            </div>
+            <div class="value">
+                <input type="text" name="shop_yoss[brandLimit]" value="{if isset($settings.brandLimit)}{$settings.brandLimit}{/if}"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Количество категорий в результатах поиска
+            </div>
+            <div class="value">
+                <input type="text" name="shop_yoss[categoryLimit]" value="{if isset($settings.categoryLimit)}{$settings.categoryLimit}{/if}"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Количество символов с поисковом запросе, после заполнения которого включается поиск
+            </div>
+            <div class="value">
+                <input type="text" name="shop_yoss[minCharCount]" value="{if isset($settings.minCharCount)}{$settings.minCharCount}{/if}" />
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                Идентификатор или класс элемента на странице
+            </div>
+            <div class="value">
+                <input type="text" name="shop_yoss[idHtml]" value="{if isset($settings.idHtml)}{$settings.idHtml}{/if}" placeholder="#search или .search" />
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="value submit">
+                <input type="submit" class="button green" value="Сохранить">
+                <span id="plugins-settings-form-status" style="display:none">
+                    <i style="vertical-align:middle" class="icon16 yes"></i> [`Saved`]
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="clear-both"></div>
