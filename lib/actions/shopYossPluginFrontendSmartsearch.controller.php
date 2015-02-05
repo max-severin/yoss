@@ -33,13 +33,21 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController
                 $brand_limit = $settings['brandLimit'];
                 $category_limit = $settings['categoryLimit'];
                 $feature_model = new shopFeatureModel();
+                $result['products_count'] = sizeof($products);
+                $result['searh_all_url'] = (wa()->getRouteUrl('/frontend/search/query=')) . '?query='.$query;
                 foreach ($products as $p) {
                     $brand_feature = $feature_model->getByCode('brand');
+                    $brand = '';
                     if ($brand_feature) {
                         $feature_value_model = $feature_model->getValuesModel($brand_feature['type']);
-                        $product_brands = $feature_value_model->getProductValues($p['id'], $brand_feature['id']);
+                        $product_brands = $feature_value_model->getProductValues($p['id'], $brand_feature['id']);                        
                         foreach ($product_brands as $k => $v) {
                             $brands[$k] = $v;
+                            if ($brand == '') {
+                                $brand = $v;
+                            } else {
+                                $brand .= ', '.$v;
+                            }
                         }   
                     }                 
                     $categories[] = $p['category_id'];
@@ -47,7 +55,7 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController
                         "name" => $p['name'],
                         "url" => $p['frontend_url'],
                         "image" => ($p['image_id'] ? "<img src='" . shopImage::getUrl(array("product_id" => $p['id'], "id" => $p['image_id'], "ext" => $p['ext']), "48x48") . "' />" : ""),
-                        
+                        "brand" => $brand,
                     );
                 }
                 if ($brands) {      
@@ -73,7 +81,7 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController
                     }
                 }
             }
-            print_r($result['brands']); exit();
+
             $this->response = $result;
 
         } else {
