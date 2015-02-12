@@ -1,14 +1,15 @@
 <?php
 
 /*
+ * Class shopYossPlugin
  * @author Max Severin <makc.severin@gmail.com>
  */
 
-class shopYossPlugin extends shopPlugin
-{
+class shopYossPlugin extends shopPlugin {
 
-    public function frontendHead()
-    {
+    /** Handler for frontend_head event: return plugin content in frontend. */
+    public function frontendHead() {
+
         $app_settings_model = new waAppSettingsModel();
         $settings = $app_settings_model->get(array('shop', 'yoss'));
 
@@ -18,6 +19,7 @@ class shopYossPlugin extends shopPlugin
         $html = $view->fetch($this->path.'/templates/Frontend.html');
 
         return $html;
+
     }
 
 }

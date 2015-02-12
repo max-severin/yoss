@@ -1,7 +1,10 @@
 .yoss-result {
 	background-color: #fff;
     border: 1px solid rgba(155, 155, 155, 0.5);
+    max-height: 400px;
     min-height: 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: absolute;
     width: 600px;
     z-index: 9999;
@@ -34,6 +37,10 @@
 }
 .yoss-result .yoss-result-right:nth-child(2n+1) {
 	background: rgba(155, 155, 155, 0.5);
+}
+.yoss-result .yoss-result-right.loading {
+    background: url("/wa-apps/shop/plugins/yoss/img/loading-gray.gif") no-repeat scroll center 15px #fff;
+    height: 35px;
 }
 .yoss-result .yoss-result-right .brand, .yoss-result .yoss-result-right .category { 
 	border: 1px solid rgba(155, 155, 155, 0.5);
