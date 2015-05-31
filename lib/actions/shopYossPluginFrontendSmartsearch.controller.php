@@ -42,91 +42,56 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
                 $result['searh_all_url'] = (wa()->getRouteUrl('/frontend/search/query=')) . '?query='.$query;
 
                 foreach ($products as $p) {
+                    if ( class_exists("shopBrandlogosPluginBrandlogosModel") ) {
+                        $brand_logos_model = new shopBrandlogosPluginBrandlogosModel();
+                    }                    
                     $brand_feature = $feature_model->getByCode('brand');
                     $brand = '';
                     if ($brand_feature) {
                         $feature_value_model = $feature_model->getValuesModel($brand_feature['type']);
-                        $product_brands = $feature_value_model->getProductValues($p['id'], $brand_feature['id']);                        
+                        $product_brands = $feature_value_model->getProductValues($p['id'], $brand_feature['id']);
+
+                        $brands = array();
+
                         foreach ($product_brands as $k => $v) {
                             $brand_id = $feature_value_model->getValueId($brand_feature['id'], $v);
-                            $brands[$brand_id] = $v;
-                            if ($brand == '') {
-                                $brand = $v;
+
+                            $brands_logo_info = $brand_logos_model->getByField('brand_value_id', $brand_id);
+
+                            if ($brands_logo_info['logo']) {
+                                $brands[] = array(
+                                    'id' => $brand_id,
+                                    'brand' => '<a href="' . wa()->getRouteUrl('shop/frontend/brand', array('brand' => str_replace('%2F', '/', urlencode($v)))) . '"><img src="/wa-data/public/shop/brandlogos/'.$brands_logo_info['logo'].'" title="'.$v.'" alt="'.$v.'"/></a>',
+                                );
                             } else {
-                                $brand .= ', '.$v;
+                                $brands[$brand_id] = '<a href="' . wa()->getRouteUrl('shop/frontend/brand', array('brand' => str_replace('%2F', '/', urlencode($v)))) . '">' . $v . '</a>';
                             }
                         }   
-                    }                 
+                    }   
+                    $category_model = new shopCategoryModel();
+                    $category = $category_model->getById($p['category_id']);
+                    $res_category = '';
+                    if ($category) {
+                        $res_category = '<a href="' . wa()->getRouteUrl('/frontend/category', array('category_url' => $category['full_url'])) . '">' .$category['name'] . '</a>';
+                    }              
+
                     $result['products'][] = array(
                         "name" => $p['name'],
                         "url" => $p['frontend_url'],
                         "image" => ($p['image_id'] ? "<img src='" . shopImage::getUrl(array("product_id" => $p['id'], "id" => $p['image_id'], "ext" => $p['ext']), "48x48") . "' />" : ""),
-                        "brand" => $brand,
+                        "price" => shop_currency_html($p['price'], true),
+                        "brands" => $brands,
+                        "category" => $res_category,
                     );
                 }
 
                 // Get full data about all product's brands and categories
                 $product_model = new shopProductModel();
-                $all_product_data = $product_model->query("SELECT id, category_id FROM shop_product WHERE name LIKE '%".$query."%' ORDER BY id")->fetchAll();
-                foreach ( $all_product_data as $p) {
-                    $brand_feature = $feature_model->getByCode('brand');
-                    if ($brand_feature) {
-                        $feature_value_model = $feature_model->getValuesModel($brand_feature['type']);
-                        $product_brands = $feature_value_model->getProductValues($p['id'], $brand_feature['id']);                        
-                        foreach ($product_brands as $k => $v) {
-                            $brand_id = $feature_value_model->getValueId($brand_feature['id'], $v);
-                            $brands[$brand_id] = $v;
-                        }   
-                    }
-                    $categories[] = $p['category_id'];
-                }
-                if ($brands) {      
-                    $brands = array_unique($brands); 
-                    if ( class_exists("shopBrandlogosPluginBrandlogosModel") ) {
-                        $brand_logos_model = new shopBrandlogosPluginBrandlogosModel();
-                    }                  
-                    foreach ($brands as $key => $value) {
-                        if ($brand_logos_model){
-                            $brands_logo_info = $brand_logos_model->getByField('brand_value_id', $key);
-                            if ($brands_logo_info['logo']) {
-                                $image = "<img src='/wa-data/public/shop/brandlogos/".$brands_logo_info['logo']."' title='".$value."' alt='".$value."' />";
-                            } else {
-                                $image = "";
-                            }
-                        } else {
-                            $image = "";
-                        }
-                        $result['brands'][] = array(
-                            "name" => $value,
-                            "url" => wa()->getRouteUrl('shop/frontend/brand', array('brand' => str_replace('%2F', '/', urlencode($value)))),
-                            "image" => $image,
-                        );
-                    }
-                }
-                if ( sizeof($result['brands']) > $brand_limit ) {
-                    $result['brands'] = array_slice($result['brands'], 0, $brand_limit);
-                }
+                $product_count = $collection->count();
 
-                if ($categories) {
-                    $categories = array_unique($categories); 
-                    $category_model = new shopCategoryModel();            
-                    foreach ($categories as $cat) {
-                        $category = $category_model->getById($cat);
-                        if ($category) {
-                            $result['categories'][] = array(
-                                "name" => $category['name'],
-                                "url" => wa()->getRouteUrl('/frontend/category', array('category_url' => $category['full_url'])),
-                            );
-                        }
-                    }
-                }
-                if ( sizeof($result['categories']) > $category_limit ) {
-                    $result['categories'] = array_slice($result['categories'], 0, $category_limit);
-                }
+                $result['product_count'] = $product_count;
 
-                $result['product_count'] = sizeof($all_product_data);
-
-                if ( sizeof($all_product_data) > (($page-1)*$product_limit + $product_limit) ) {
+                if ( $product_count > (($page-1)*$product_limit + $product_limit) ) {
                     $result['next_page'] = $page+1;
                 } else {
                     $result['next_page'] = false;
