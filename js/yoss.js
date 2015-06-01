@@ -76,7 +76,8 @@ $(document).ready(function() {
 					}
 				}
 			}, 'json');
-
+			
+			{if $yoss_settings.lazy_loading === 'on'}
 			$(".yoss-result").scroll(function() {
 
 				var resBlock = $(this);
@@ -144,6 +145,7 @@ $(document).ready(function() {
 		        }
 
 			});
+			{/if}
 
 		} else {
 

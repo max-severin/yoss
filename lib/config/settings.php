@@ -13,16 +13,26 @@ return array(
             'on'  => 'Включен',
         ),
     ),
+    'lazy_loading' => array(
+        'title'        => 'Ленивая прокрутка',
+        'description'  => 'Включить ленивую прокрутку для товаров в результатах поиска.',
+        'value'        => 'off',
+        'control_type' => waHtmlControl::SELECT,
+        'options'      => array(
+            'off' => 'Выключен',
+            'on'  => 'Включен',
+        ),
+    ),
     'product_limit' => array(
         'title'        => 'Количество товаров',
-        'description'  => 'Количество товаров в результатах поиска',
+        'description'  => 'Количество товаров в результатах поиска.',
         'value'        => '10',
         'placeholder'  => '10',
         'control_type' => waHtmlControl::INPUT,
     ),
     'min_char_count' => array(
         'title'        => 'Количество символов',
-        'description'  => 'Количество символов с поисковом запросе, после заполнения которого включается поиск',
+        'description'  => 'Количество символов с поисковом запросе, после заполнения которого включается поиск.',
         'value'        => '2',
         'placeholder'  => '2',
         'control_type' => waHtmlControl::INPUT,
