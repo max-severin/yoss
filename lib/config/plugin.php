@@ -6,7 +6,7 @@
 
 return array(
     'name' => 'Умный поиск',
-    'description' => 'Ajax-поиск товаров, их брендов и категорий',
+    'description' => 'Ajax-поиск товаров',
     'img' => 'img/yoss.png',
     'version' => '1.0',
     'shop_settings' => true,

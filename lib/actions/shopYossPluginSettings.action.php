@@ -5,14 +5,12 @@
  * @author Max Severin <makc.severin@gmail.com>
  */
 
-class shopYossPluginSettingsAction extends waViewAction {
+class shopYossPluginSettingsAction extends shopPluginsSettingsAction {
 
     public function execute() {
+    	$_GET['id'] = 'yoss';
 
-        $app_settings_model = new waAppSettingsModel();
-        $settings = $app_settings_model->get(array('shop', 'yoss'));
-        $this->view->assign('settings', $settings);
-        
+        parent::execute();
     }
 
 }

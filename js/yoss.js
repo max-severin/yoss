@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-	$("{$yoss_settings.idHtml}").keyup(function() {
+	$("{$yoss_settings.id_in_html}").keyup(function() {
 
 		var t = $(this);
 
-		if ( t.val().length >= {$yoss_settings.minCharCount} ) {
+		if ( t.val().length >= {$yoss_settings.min_char_count} ) {
 
 			var resultBlock = $('<div/>').addClass("yoss-result loading");
 
@@ -83,7 +83,7 @@ $(document).ready(function() {
 
 				if(resBlock.scrollTop() + resBlock.innerHeight() >= this.scrollHeight) {
 
-					var query = $("{$yoss_settings.idHtml}").val();
+					var query = $("{$yoss_settings.id_in_html}").val();
 		            var nextPage = resBlock.find("#next_page").val();
 		            var loadingBlock = $('<div/>').addClass("yoss-result-wrapper loading");
 		            var lastEl = resBlock.find('.yoss-result-wrapper:last-child');

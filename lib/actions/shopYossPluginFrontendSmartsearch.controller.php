@@ -25,7 +25,7 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
 
             $collection = new shopProductsCollection('search/query=' . $query);
 
-            $product_limit = $settings['productLimit'];
+            $product_limit = $settings['product_limit'];
             if (!$product_limit) {
                 $product_limit = $this->getConfig()->getOption('products_per_page');
             }
