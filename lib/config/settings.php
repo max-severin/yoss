@@ -32,7 +32,7 @@ return array(
     ),
     'min_char_count' => array(
         'title'        => _wp('Characters limit'),
-        'description'  => _wp('Number of characters from the search query, after filling that triggered search.'),
+        'description'  => _wp('Number of characters in the search query, after filling that triggered search.'),
         'value'        => '2',
         'placeholder'  => '2',
         'control_type' => waHtmlControl::INPUT,
