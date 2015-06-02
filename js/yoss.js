@@ -37,8 +37,8 @@ $(document).ready(function() {
 							resultBlock.append(nextPage);
 
 							var wrapperBlock = $('<div/>').addClass("yoss-result-wrapper");
-							var productCountSpan = $('<span/>').addClass("yoss-result-product-count").html("Найдено товаров: " + result.data.product_count);
-							var searchAllUrlLink = $("<a/>").addClass("yoss-result-show-all").attr("href", result.data.searh_all_url).html('перейти к результатам');
+							var productCountSpan = $('<span/>').addClass("yoss-result-product-count").html("{_wp('Products found')}: " + result.data.product_count);
+							var searchAllUrlLink = $("<a/>").addClass("yoss-result-show-all").attr("href", result.data.searh_all_url).html("{_wp('to results')}");
 
 							wrapperBlock.append(productCountSpan, searchAllUrlLink);
 							resultBlock.append(wrapperBlock);
@@ -59,7 +59,7 @@ $(document).ready(function() {
 								}
 								var productCategory = $('<div/>').addClass("product-category").html(result.data.products[key].category);
 								var productPrice = $('<div/>').addClass("product-price").html(result.data.products[key].price);
-								var productLink = $("<a/>").addClass("product-link").attr("href", result.data.products[key].url).html('к товару &rarr;');
+								var productLink = $("<a/>").addClass("product-link").attr("href", result.data.products[key].url).html("{_wp('to product')} &rarr;");
 
 								wrapperLeft.append(productImg, productName, productBrands, productCategory);
 								wrapperRight.append(productPrice, productLink);
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
 						} else {
 
-							resultBlock.addClass("no-products").html("Извините, но ничего не было найдено, попробуйте изменить свой запрос");
+							resultBlock.addClass("no-products").html("{_wp('Sorry, but nothing was found, try to change your query')}");
 
 						}
 					}
