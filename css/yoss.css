@@ -3,13 +3,15 @@
     border: 1px solid rgba(155, 155, 155, 0.5);
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    margin: -5px 0 0 22px;
+    left: 0;
+    margin: 0;
     max-height: 400px;
     min-height: 40px;
     overflow-x: hidden;
     overflow-y: auto;
     position: absolute;
-    width: 590px;
+    top: 36px;
+    width: auto;
     z-index: 9999;
 }
 .yoss-result.loading {
@@ -26,47 +28,45 @@
     float: left;
     width: 100%;
 }
+.yoss-result .yoss-result-product-count {
+    display: block;
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 29px 0;
+    position: relative;
+    text-align: center;
+    width: 40%;
+}
+.yoss-result .yoss-result-show-all {
+    display: block;
+    float: left;
+    font-weight: normal;
+    margin: 29px 0;
+    position: relative;
+    text-align: left;
+    width: 60%;
+}
 .yoss-result .yoss-result-left {
     float: left;
-    width: 400px;
+    width: 75%;
 }
 .yoss-result .yoss-result-right {
     float: right;
-    width: 175px;
-}
-.yoss-result .yoss-result-right:nth-child(2n+1) {
-    background: rgba(155, 155, 155, 0.5);
+    width: 25%;
 }
 .yoss-result .loading {
     background: url("/wa-apps/shop/plugins/yoss/img/loading-blue.gif") no-repeat scroll center 15px #fff;
     height: 35px;
     width: 100%;
 }
-.yoss-result .yoss-result-wrapper .product-brand, .yoss-result .yoss-result-wrapper .product-category { 
-    color: #777;
-    float: left;
-    font-size: 12px;
-    margin: 0 10px 0 0;
-    position: relative;
-}
-.yoss-result .yoss-result-wrapper .product-brand a, .yoss-result .yoss-result-wrapper .product-brand a img {
-    float: left;
-    height: auto;
-    margin: -4px 0 0;
-    position: relative;
-    width: 34px;
-}
-.yoss-result .yoss-result-wrapper .product-category a {
-    color: #777;
-}
-.yoss-result .yoss-result-wrapper .product-image {
-    border: 1px solid #FFF;
+.yoss-result .product-image {
     float: left;
     height: 48px;
-    margin: 20px 25px 30px 35px;
-    width: 48px;
+    margin: 20px 4% 30px;
+    width: 20%;
 }
-.yoss-result .yoss-result-wrapper .product-name {
+.yoss-result .product-name {
     display: block;
     float: left;
     font-size: 14px;
@@ -74,53 +74,43 @@
     line-height: 18px;
     margin: 16px 0 10px;
     position: relative;
-    width: 290px;
+    text-align: left;
+    width: 72%;
 }
-.yoss-result .yoss-resultwrapper .product-brand {
-    color: #333;
-    font-size: 12px;
+.yoss-result .product-brand, .yoss-result .product-category { 
+    color: #777;
+    float: left;
+    font-size: 0.8em;
+    margin: 0 10px 0 0;
+    position: relative;
 }
-.yoss-result .yoss-result-wrapper .product-price {
+.yoss-result .product-brand a, .yoss-result .product-brand a img {
+    float: left;
+    height: auto;
+    margin: -4px 0 0;
+    position: relative;
+    width: 34px;
+}
+.yoss-result .product-category a {
+    color: #777;
+}
+.yoss-result .product-price {
     display: block;
     float: left;
-    font-size: 23px;
+    font-size: 1.6em;
     font-weight: bold;
-    margin: 20px 0 5px;
+    margin: 20px 0 10px;
     text-align: center;
     width: 100%;
 }
 .yoss-result .yoss-result-wrapper .product-link {
-    border: 2px solid #00a9ec;
+    border: 1px solid;
     border-radius: 4px;
-    color: #00a9ec;
-    display: block;
-    float: left;
+    display: inline-block;
     font-weight: bold;
     height: 26px;
     line-height: 26px;
-    margin: 0 0 0 28px;
     text-align: center;
     text-decoration: none;
-    width: 106px;
-}
-.yoss-result .yoss-result-wrapper .product-link:hover {
-    background: #00a9ec;
-    color: #FFF;
-}
-.yoss-result-product-count {
-    color: #ff5601;
-    display: block;
-    float: left;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 29px 15px 29px 20px;
-    position: relative;
-}
-.yoss-result-show-all {
-    color: #000;
-    display: block;
-    float: left;
-    font-weight: normal;
-    margin: 31px 0 29px;
-    position: relative;
+    width: 85%;
 }
