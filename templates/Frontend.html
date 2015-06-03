@@ -5,7 +5,13 @@
 	</style>
 
 	<script type="text/javascript">
-		{include file="../js/yoss.js"}
+		{include file="../js/yoss.frontend.js"}
+	</script>
+
+	<script type="text/javascript">
+		(function ($) {
+		    yossFrontend.initModule();
+		})(jQuery);
 	</script>
 
 {/if}
