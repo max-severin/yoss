@@ -41,10 +41,7 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
                 $feature_model = new shopFeatureModel();
                 $result['searh_all_url'] = (wa()->getRouteUrl('/frontend/search/query=')) . '?query='.$query;
 
-                foreach ($products as $p) {
-                    if ( class_exists("shopBrandlogosPluginBrandlogosModel") ) {
-                        $brand_logos_model = new shopBrandlogosPluginBrandlogosModel();
-                    }                    
+                foreach ($products as $p) {         
                     $brand_feature = $feature_model->getByCode('brand');
                     $brand = '';
                     if ($brand_feature) {
@@ -55,17 +52,10 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
 
                         foreach ($product_brands as $k => $v) {
                             $brand_id = $feature_value_model->getValueId($brand_feature['id'], $v);
-
-                            $brands_logo_info = $brand_logos_model->getByField('brand_value_id', $brand_id);
-
-                            if ($brands_logo_info['logo']) {
-                                $brands[] = array(
-                                    'id' => $brand_id,
-                                    'brand' => '<a href="' . wa()->getRouteUrl('shop/frontend/brand', array('brand' => str_replace('%2F', '/', urlencode($v)))) . '"><img src="/wa-data/public/shop/brandlogos/'.$brands_logo_info['logo'].'" title="'.$v.'" alt="'.$v.'"/></a>',
-                                );
-                            } else {
-                                $brands[$brand_id] = '<a href="' . wa()->getRouteUrl('shop/frontend/brand', array('brand' => str_replace('%2F', '/', urlencode($v)))) . '">' . $v . '</a>';
-                            }
+                            $brands[] = array(
+                                'id' => $brand_id,
+                                'brand' => '<a href="' . wa()->getRouteUrl('shop/frontend/brand', array('brand' => str_replace('%2F', '/', urlencode($v)))) . '">' . $v . '</a>',
+                            );
                         }   
                     }   
                     $category_model = new shopCategoryModel();

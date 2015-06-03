@@ -83,14 +83,7 @@
     margin: 0 10px 0 0;
     position: relative;
 }
-.yoss-result .product-brand a, .yoss-result .product-brand a img {
-    float: left;
-    height: auto;
-    margin: -4px 0 0;
-    position: relative;
-    width: 34px;
-}
-.yoss-result .product-category a {
+.yoss-result .product-brand a , .yoss-result .product-category a {
     color: #777;
 }
 .yoss-result .product-price {
@@ -102,7 +95,7 @@
     text-align: center;
     width: 100%;
 }
-.yoss-result .yoss-result-wrapper .product-link {
+.yoss-result .product-link {
     border: 1px solid;
     border-radius: 4px;
     display: inline-block;
