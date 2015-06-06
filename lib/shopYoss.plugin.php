@@ -8,14 +8,22 @@
 class shopYossPlugin extends shopPlugin {
 
     /** Handler for frontend_head event: return plugin content in frontend. */
-    public function frontendHead() {
+    public function frontendHead() {   
+        $settings = $this->getSettings();
 
-        $app_settings_model = new waAppSettingsModel();
-        $settings = $app_settings_model->get(array('shop', 'yoss'));
+        foreach ($settings as $id => $setting) {
+            $settings[$id] = addslashes(htmlspecialchars($setting));
+
+            $settings['result_max_height'] = (int)$settings['result_max_height'] . 'px';
+            
+            if ($settings['result_width'] != 'auto') { 
+                $settings['result_width'] = (int)$settings['result_width'] . 'px';
+            }
+        }
 
         $view = wa()->getView();
-        $view->assign('search_url', wa()->getRouteUrl('shop/frontend/smartsearch'));
         $view->assign('yoss_settings', $settings);
+        $view->assign('search_url', wa()->getRouteUrl('shop/frontend/smartsearch'));
         $html = $view->fetch($this->path.'/templates/Frontend.html');
 
         return $html;

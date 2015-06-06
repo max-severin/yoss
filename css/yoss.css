@@ -5,13 +5,13 @@
     border-bottom-right-radius: 6px;
     left: 0;
     margin: 0;
-    max-height: 400px;
+    max-height: {$yoss_settings.result_max_height};
     min-height: 40px;
     overflow-x: hidden;
     overflow-y: auto;
     position: absolute;
     top: 36px;
-    width: auto;
+    width: {$yoss_settings.result_width};
     z-index: 9999;
 }
 .yoss-result.loading {
