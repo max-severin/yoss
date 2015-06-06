@@ -85,3 +85,19 @@ msgstr "Селектор поиска"
 msgid "Specify the ID or class of the html element,<br />when filling which will open a search results.<br />Must be like «<b>#search</b>» or «<b>.search</b>»."
 msgstr "Укажите идентификатор или класс html-элемента,<br />при заполнении которого будет открываться окно с результатами поиска.<br />Должно быть вида «<b>#search</b>» или «<b>.search</b>»."
 
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:48
+msgid "Max height (px)"
+msgstr "Максимальная высота (px)"
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:49
+msgid "Max height of search result block."
+msgstr "Максимальная высота блока с результатами поиска."
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:55
+msgid "Width (px)"
+msgstr "Ширина (px)"
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:56
+msgid "Width of search result block."
+msgstr "Ширина блока с результатами поиска."
+

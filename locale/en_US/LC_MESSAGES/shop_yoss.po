@@ -84,3 +84,23 @@ msgstr ""
 msgid "Specify the ID or class of the html element,<br />when filling which will open a search results.<br />Must be like «<b>#search</b>» or «<b>.search</b>»."
 msgstr ""
 
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:32
+msgid "Number of characters in the search query, after filling that triggered search."
+msgstr ""
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:48
+msgid "Max height (px)"
+msgstr ""
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:49
+msgid "Max height of search result block."
+msgstr ""
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:55
+msgid "Width (px)"
+msgstr ""
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:56
+msgid "Width of search result block."
+msgstr ""
+
