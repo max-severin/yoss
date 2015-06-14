@@ -15,7 +15,7 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
         if ( $settings['status'] ) {
 
             $query = waRequest::post('query', '', waRequest::TYPE_STRING_TRIM);
-            $page = waRequest::post('pg', 1, 'int');
+            $page = waRequest::post('page', 1, 'int');
 
             $result = array();
             $result['brands'] = array();

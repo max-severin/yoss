@@ -5,7 +5,7 @@
 
 /*global $, yossFrontend */
 
-var yossFrontend = (function () { "use strict";
+var yossFrontend = (function () { 'use strict';
 	//---------------- BEGIN MODULE SCOPE VARIABLES ---------------
 	var
 		getProductBlock, onSearchInputKeyup, onResultBlockScroll, initModule;
@@ -16,17 +16,17 @@ var yossFrontend = (function () { "use strict";
 		var									
 			wrapperBlock, wrapperLeft, wrapperRight, productImg, productName, productBrands, productCategory, productPrice, productLink;
 
-		wrapperBlock    = $('<div/>').addClass("yoss-result-wrapper");
-		wrapperLeft     = $('<div/>').addClass("yoss-result-left");
-		wrapperRight    = $('<div/>').addClass("yoss-result-right");
+		wrapperBlock    = $('<div/>').addClass('yoss-result-wrapper');
+		wrapperLeft     = $('<div/>').addClass('yoss-result-left');
+		wrapperRight    = $('<div/>').addClass('yoss-result-right');
 
-		productImg      = $('<a/>').attr("href", product.url).addClass("product-image").html(product.image);
-		productName     = $('<a/>').attr("href", product.url).addClass("product-name").html(product.name);
-		productBrands   = $('<div/>').addClass("product-brand");
-		productCategory = $('<div/>').addClass("product-category").html(product.category);
+		productImg      = $('<a/>').attr('href', product.url).addClass('product-image').html(product.image);
+		productName     = $('<a/>').attr('href', product.url).addClass('product-name').html(product.name);
+		productBrands   = $('<div/>').addClass('product-brand');
+		productCategory = $('<div/>').addClass('product-category').html(product.category);
 
-		productPrice    = $('<div/>').addClass("product-price").html(product.price);
-		productLink     = $("<a/>").addClass("product-link").attr("href", product.url).html("{_wp('to product')} &rarr;");
+		productPrice    = $('<div/>').addClass('product-price').html(product.price);
+		productLink     = $('<a/>').addClass('product-link').attr('href', product.url).html('{_wp("to product")} &rarr;');
 
 		if (product.brands.length > 0) {
 			for(var b in product.brands) {
@@ -48,24 +48,24 @@ var yossFrontend = (function () { "use strict";
 
 		if ( t.val().length >= {$yoss_settings.min_char_count} ) {
 
-			var resultBlock = $('<div/>').addClass("yoss-result loading");
+			var resultBlock = $('<div/>').addClass('yoss-result loading');
 
-			if ($(".yoss-result").length > 0) {
-				$(".yoss-result").remove();
+			if ($('.yoss-result').length > 0) {
+				$('.yoss-result').remove();
 			} 
 
 			t.addClass('active');
 			t.after(resultBlock);
 
 			$.ajax({
-				type: "POST",
-				url: "{$search_url}",
-				data: "query="+t.val()+"&pg=1",
-				success: function(response){
+				type: 'POST',
+				url: '{$search_url}',
+				data: 'query='+t.val()+'&page=1',
+				success: function (response) {
 
 					var result = $.parseJSON(response);
 
-					resultBlock.removeClass("loading");
+					resultBlock.removeClass('loading');
 
 					if (result.status === 'ok') {
 
@@ -78,9 +78,9 @@ var yossFrontend = (function () { "use strict";
 							}
 							resultBlock.append(nextPage);
 
-							var wrapperBlock = $('<div/>').addClass("yoss-result-wrapper");
-							var productCountSpan = $('<span/>').addClass("yoss-result-product-count").html("{_wp('Products found')}: " + result.data.product_count);
-							var searchAllUrlLink = $("<a/>").addClass("yoss-result-show-all").attr("href", result.data.searh_all_url).html("{_wp('to results')}");
+							var wrapperBlock = $('<div/>').addClass('yoss-result-wrapper');
+							var productCountSpan = $('<span/>').addClass('yoss-result-product-count').html('{_wp("Products found")}: ' + result.data.product_count);
+							var searchAllUrlLink = $('<a/>').addClass('yoss-result-show-all').attr('href', result.data.searh_all_url).html('{_wp("to results")}');
 
 							wrapperBlock.append(productCountSpan, searchAllUrlLink);
 							resultBlock.append(wrapperBlock);
@@ -94,7 +94,7 @@ var yossFrontend = (function () { "use strict";
 
 						} else {
 
-							resultBlock.addClass("no-products").html("{_wp('Sorry, but nothing was found, try to change your query')}");
+							resultBlock.addClass('no-products').html('{_wp("Sorry, but nothing was found, try to change your query")}');
 
 						}
 					} else {
@@ -106,13 +106,13 @@ var yossFrontend = (function () { "use strict";
 			}, 'json');
 			
 			{if $yoss_settings.lazy_loading === 'on'}
-			$(".yoss-result").scroll(onResultBlockScroll);
+				$('.yoss-result').scroll(onResultBlockScroll);
 			{/if}
 
 		} else {
 
 			t.removeClass('active');
-	        $(".yoss-result").remove();
+	        $('.yoss-result').remove();
 			return false;
 
 		}
@@ -122,26 +122,25 @@ var yossFrontend = (function () { "use strict";
 
 		if(resultBlock.scrollTop() + resultBlock.innerHeight() >= this.scrollHeight) {
 
-			var query = $("{$yoss_settings.id_in_html}").val();
-	        var nextPage = resultBlock.find("#next_page").val();
-	        var loadingBlock = $('<div/>').addClass("yoss-result-wrapper loading");
+			var query = $('{$yoss_settings.id_in_html}').val();
+	        var nextPage = resultBlock.find('#next_page').val();
+	        var loadingBlock = $('<div/>').addClass('yoss-result-wrapper loading');
 	        var lastEl = resultBlock.find('.yoss-result-wrapper:last-child');
 
 	        if (query.length > 0 && nextPage > 0 ) {
 	        	lastEl.after(loadingBlock);
 
 	            $.ajax({
-					type: "POST",
-					url: "{$search_url}",
-					data: "query="+query+"&pg="+nextPage,
-					success: function(response){
+					type: 'POST',
+					url: '{$search_url}',
+					data: 'query='+query+'&page='+nextPage,
+					success: function (response) {
 
 						var result = $.parseJSON(response);
 
-						$(".yoss-result-wrapper.loading").remove();
+						$('.yoss-result-wrapper.loading').remove();
 
-						if (result.status === 'ok' && result.data.products.length > 0) {
-							
+						if (result.status === 'ok' && result.data.products.length > 0) {							
 
 							if (result.data.next_page !== false) {
 								resultBlock.find('#next_page').val(result.data.next_page);
