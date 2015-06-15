@@ -67,7 +67,7 @@ var yossFrontend = (function () { 'use strict';
 
 					resultBlock.removeClass('loading');
 
-					if (result.status === 'ok') {
+					if (result.status === 'ok' && result.data !== false) {
 
 						if (result.data.products.length > 0) {
 
@@ -99,7 +99,7 @@ var yossFrontend = (function () { 'use strict';
 						}
 					} else {
 
-						// error occured
+						resultBlock.addClass('yoss-error').html('{_wp("Sorry, error accured")}');
 
 					}
 				}
@@ -149,7 +149,7 @@ var yossFrontend = (function () { 'use strict';
 							}
 
 							for(var key in result.data.products) {
-								var getProductBlock = addProduct(result.data.products[key]);
+								var productBlock = getProductBlock(result.data.products[key]);
 
 								lastEl.after(productBlock);
 							}	

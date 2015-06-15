@@ -101,3 +101,7 @@ msgstr "Ширина (px)"
 msgid "Width of search result block."
 msgstr "Ширина блока с результатами поиска."
 
+#: /wa-apps/shop/plugins/yoss/js/yoss.frontend.js:102
+msgid "Sorry, error accured"
+msgstr "Извините, произошла ошибка"
+

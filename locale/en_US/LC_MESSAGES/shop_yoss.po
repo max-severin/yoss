@@ -104,3 +104,7 @@ msgstr ""
 msgid "Width of search result block."
 msgstr ""
 
+#: /wa-apps/shop/plugins/yoss/js/yoss.frontend.js:102
+msgid "Sorry, error accured"
+msgstr ""
+
