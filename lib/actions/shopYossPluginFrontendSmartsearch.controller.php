@@ -4,11 +4,9 @@
  * Class shopYossPluginFrontendSmartsearchController
  * @author Max Severin <makc.severin@gmail.com>
  */
-
 class shopYossPluginFrontendSmartsearchController extends waJsonController {
     
     public function execute() {
-
         $app_settings_model = new waAppSettingsModel();
         $settings = $app_settings_model->get(array('shop', 'yoss'));
 
@@ -32,12 +30,10 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
 
             $products = $collection->getProducts('*', ($page-1)*$product_limit, $product_limit);
             
-            if ($products) { 
+            if ($products) {
 
                 $brands = array();
                 $categories = array();
-                $brand_limit = $settings['brandLimit'];
-                $category_limit = $settings['categoryLimit'];
                 $feature_model = new shopFeatureModel();
                 $result['searh_all_url'] = (wa()->getRouteUrl('/frontend/search/query=')) . '?query='.$query;
 
@@ -57,7 +53,8 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
                                 'brand' => '<a href="' . wa()->getRouteUrl('shop/frontend/brand', array('brand' => str_replace('%2F', '/', urlencode($v)))) . '">' . $v . '</a>',
                             );
                         }   
-                    }   
+                    }
+
                     $category_model = new shopCategoryModel();
                     $category = $category_model->getById($p['category_id']);
                     $res_category = '';
@@ -75,7 +72,6 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
                     );
                 }
 
-                // Get full data about all product's brands and categories
                 $product_model = new shopProductModel();
                 $product_count = $collection->count();
 
@@ -96,7 +92,6 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
             $this->response = false;
 
         }
-
     }
 
 }

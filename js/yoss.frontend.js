@@ -87,7 +87,6 @@ var yossFrontend = (function () { 'use strict';
 
 							for(var key in result.data.products) {
 								var productBlock = getProductBlock(result.data.products[key]);
-
 								resultBlock.append(productBlock);
 							}
 
@@ -97,6 +96,7 @@ var yossFrontend = (function () { 'use strict';
 							resultBlock.addClass('no-products').html('{_wp("Sorry, but nothing was found, try to change your query")}');
 
 						}
+
 					} else {
 
 						resultBlock.addClass('yoss-error').html('{_wp("Sorry, error accured")}');

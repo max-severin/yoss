@@ -2,9 +2,10 @@
 
 /*
  * Class shopYossPlugin
+ * Product ajax-search plugin
+ * Dynamically displays a list of products, their brands and categories
  * @author Max Severin <makc.severin@gmail.com>
  */
-
 class shopYossPlugin extends shopPlugin {
 
     /** Handler for frontend_head event: return plugin content in frontend. */
@@ -27,7 +28,6 @@ class shopYossPlugin extends shopPlugin {
         $html = $view->fetch($this->path.'/templates/Frontend.html');
 
         return $html;
-
     }
 
 }

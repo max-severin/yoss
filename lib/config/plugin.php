@@ -3,7 +3,6 @@
 /*
  * @author Max Severin <makc.severin@gmail.com>
  */
-
 return array(
     'name' => /*_wp*/('Smart search'),
     'description' => /*_wp*/('Product ajax-search'),
