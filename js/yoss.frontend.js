@@ -8,7 +8,7 @@
 var yossFrontend = (function () { 'use strict';
 	//---------------- BEGIN MODULE SCOPE VARIABLES ---------------
 	var
-		getProductBlock, onSearchInputKeyup, onResultBlockScroll, initModule;
+		getProductBlock, onSearchInputKeyup, onResultBlockScroll, onNonResultBlockClick, initModule;
 	//----------------- END MODULE SCOPE VARIABLES ----------------
 
 	//--------------------- BEGIN DOM METHODS ---------------------
@@ -48,14 +48,25 @@ var yossFrontend = (function () { 'use strict';
 
 		if ( t.val().length >= {$yoss_settings.min_char_count} ) {
 
-			var resultBlock = $('<div/>').addClass('yoss-result loading');
+			var inputOffset = t.offset();
+			var inputHeight = t.outerHeight() - 1;
+			var inputParentWidth = t.parent().outerWidth();
+
+			var resultBlock = $('<div/>').addClass('yoss-result loading').css({
+				'left': inputOffset.left + 'px',
+				'top': (inputOffset.top + inputHeight) + 'px'
+			});
 
 			if ($('.yoss-result').length > 0) {
 				$('.yoss-result').remove();
 			} 
 
+			{if $yoss_settings.result_width === 'auto'}
+				resultBlock.css({ 'width': inputParentWidth + 'px' });
+			{/if}
+
 			t.addClass('active');
-			t.after(resultBlock);
+			$('body').prepend(resultBlock);
 
 			$.ajax({
 				type: 'POST',
@@ -161,11 +172,20 @@ var yossFrontend = (function () { 'use strict';
 
 	    }
 	};
+	onNonResultBlockClick = function (event) {
+		var div = $(event.data);
+
+		if (!div.is(event.target) && div.has(event.target).length === 0) {
+			div.remove();
+		}
+	};
 	//------------------- END EVENT HANDLERS ----------------------
 
 	//------------------- BEGIN PUBLIC METHODS --------------------
 	initModule = function () {		
 		$(document).on('keyup', '{$yoss_settings.id_in_html}', onSearchInputKeyup);
+
+		$(document).mouseup('.yoss-result', onNonResultBlockClick);
 	};
 
 	return {
