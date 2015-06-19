@@ -1,27 +1,27 @@
-# yoss (Smart Search)
+# yoss
 
-## Описание
-Плагин «Умный поиск» для Webasyst Shop-Script
+## Description
+Smart search plugin for Shop-Script 6
 
-## Возможности
-Ajax-поиск товаров.
+## Features
+Product ajax-search.
 
-Динамически отображает список товаров, их брендов, категорий. В настройках плагина можно задавать их отображаемое количество.
+Dynamically displays a list of products, their categories and brands. In the plugin settings you can set the number of displayed products.
 
-Есть возможность включить lazy-loading прокрутку для товаров в результатах поиска. Либо же можно выводить N-ное количество товаров, задаваемое в настройках.
+You can enable lazy-loading scrolling of products in the search results. Or you can customize the number of displayed products in the settings.
 
-## Установка
-### Автоматическая
+## Installing
+### Auto
 ...
 
-### Ручная
-1. Загрузите папку с плагином из репозитория в каталог на вашем веб-сервере: /PATH_TO_WEBASYST/wa-apps/shop/plugins
+### Manual
+1. Get the code into your web server's folder /PATH_TO_WEBASYST/wa-apps/shop/plugins
 
-2. Добавьте следующую строку в файл /PATH_TO_WEBASYST/wa-config/apps/shop/plugins.php (этот файл содержит список подключенных плагинов приложения «Магазин»):
+2. Add the following line into the /PATH_TO_WEBASYST/wa-config/apps/shop/plugins.php file (this file lists all installed shop plugins):
 
 		'yoss' => true,
 
-3. Настройте плагин во вкладке «Плагины» приложения «Магазин».
+3. Done. Configure the plugin in the plugins settings tab of shop backend.
 
-## Особенности
-Для корректной работы плагина в шаблоне текущей темы дизайна должен быть подключен хук **frontend_head**
+## Specificity
+For the correct operation of the plugin in the current design theme needs to be connected **frontend_head** hook
