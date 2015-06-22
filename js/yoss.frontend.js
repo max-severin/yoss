@@ -8,7 +8,7 @@
 var yossFrontend = (function () { 'use strict';
 	//---------------- BEGIN MODULE SCOPE VARIABLES ---------------
 	var
-		getProductBlock, onSearchInputKeyup, onResultBlockScroll, onNonResultBlockClick, initModule;
+		getProductBlock, onSearchInputKeyup, searchAjaxStatus, onResultBlockScroll, onNonResultBlockClick, initModule;
 	//----------------- END MODULE SCOPE VARIABLES ----------------
 
 	//--------------------- BEGIN DOM METHODS ---------------------
@@ -45,6 +45,7 @@ var yossFrontend = (function () { 'use strict';
 	//------------------- BEGIN EVENT HANDLERS --------------------
 	onSearchInputKeyup = function (event) {
 		var t = $(this);
+		searchAjaxStatus = false;
 
 		if ( t.val().length >= {$yoss_settings.min_char_count} ) {
 
@@ -134,44 +135,48 @@ var yossFrontend = (function () { 'use strict';
 		var resultBlock = $(this);
 
 		if(resultBlock.scrollTop() + resultBlock.innerHeight() >= this.scrollHeight) {
+			if (!searchAjaxStatus) {
+				searchAjaxStatus = true;
 
-			var query = $('{$yoss_settings.id_in_html}').val();
-	        var nextPage = resultBlock.find('#next_page').val();
-	        var loadingBlock = $('<div/>').addClass('yoss-result-wrapper loading');
-	        var lastEl = resultBlock.find('.yoss-result-wrapper:last-child');
+				var query = $('{$yoss_settings.id_in_html}').val();
+		        var nextPage = resultBlock.find('#next_page').val();
+		        var loadingBlock = $('<div/>').addClass('yoss-result-wrapper loading');
+		        var lastEl = resultBlock.find('.yoss-result-wrapper:last-child');
 
-	        if (query.length > 0 && nextPage > 0 ) {
-	        	lastEl.after(loadingBlock);
+		        if (query.length > 0 && nextPage > 0 ) {
+		        	lastEl.after(loadingBlock);
 
-	            $.ajax({
-					type: 'POST',
-					url: '{$search_url}',
-					data: 'query='+query+'&page='+nextPage,
-					success: function (response) {
+		            $.ajax({
+						type: 'POST',
+						url: '{$search_url}',
+						data: 'query='+query+'&page='+nextPage,
+						success: function (response) {
 
-						var result = $.parseJSON(response);
+							var result = $.parseJSON(response);
 
-						$('.yoss-result-wrapper.loading').remove();
+							searchAjaxStatus = false;
 
-						if (result.status === 'ok' && result.data.products.length > 0) {							
+							$('.yoss-result-wrapper.loading').remove();
 
-							if (result.data.next_page !== false) {
-								resultBlock.find('#next_page').val(result.data.next_page);
-							} else {
-								resultBlock.find('#next_page').val('0');
+							if (result.status === 'ok' && result.data.products.length > 0) {							
+
+								if (result.data.next_page !== false) {
+									resultBlock.find('#next_page').val(result.data.next_page);
+								} else {
+									resultBlock.find('#next_page').val('0');
+								}
+
+								for(var key in result.data.products) {
+									var productBlock = getProductBlock(result.data.products[key]);
+
+									lastEl.after(productBlock);
+								}	
+
 							}
-
-							for(var key in result.data.products) {
-								var productBlock = getProductBlock(result.data.products[key]);
-
-								lastEl.after(productBlock);
-							}	
-
 						}
-					}
-				}, 'json');
+					}, 'json');
+				}
 			}
-
 	    }
 	};
 	onNonResultBlockClick = function (event) {
