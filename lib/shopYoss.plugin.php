@@ -13,7 +13,9 @@ class shopYossPlugin extends shopPlugin {
         $settings = $this->getSettings();
 
         foreach ($settings as $id => $setting) {
-            $settings[$id] = addslashes(htmlspecialchars($setting));
+            if ($id != 'result_css') {
+                $settings[$id] = addslashes(htmlspecialchars($setting));
+            }
 
             $settings['result_max_height'] = (int)$settings['result_max_height'] . 'px';
             

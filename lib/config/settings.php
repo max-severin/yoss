@@ -58,4 +58,25 @@ return array(
         'placeholder'  => 'auto',
         'control_type' => waHtmlControl::INPUT,
     ),
+    'result_css' => array(
+        'title'        => _wp('CSS styles'),
+        'description'  => _wp('CSS styles of result block.'),
+        'value'        => '.yoss-result { background-color: #fff; border: 1px solid rgba(155, 155, 155, 0.5); border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; left: 0; margin: 0; max-height: 400px; min-height: 40px; overflow-x: hidden; overflow-y: auto; position: absolute; top: 36px; width: auto; z-index: 9999; }
+.yoss-result.loading { background: url("/wa-apps/shop/plugins/yoss/img/loading-blue.gif") no-repeat scroll center 15px #fff; }
+.yoss-result.no-products { color: #444; line-height: 40px; text-align: center; width: inherit; }
+.yoss-result.yoss-error { color: #de4d2c; line-height: 40px; text-align: center; width: inherit; }
+.yoss-result .yoss-result-wrapper { border-bottom: 1px dotted #dbdbdb; float: left; width: 100%; }
+.yoss-result .yoss-result-product-count { display: block; float: left; font-size: 16px; font-weight: bold; margin: 29px 0; position: relative; text-align: center; width: 40%; }
+.yoss-result .yoss-result-show-all { display: block; float: left; font-weight: normal; margin: 29px 0; position: relative; text-align: left; width: 60%; }
+.yoss-result .yoss-result-left { float: left; width: 75%; }
+.yoss-result .yoss-result-right { float: right; width: 25%; }
+.yoss-result .loading { background: url("/wa-apps/shop/plugins/yoss/img/loading-blue.gif") no-repeat scroll center 15px #fff; height: 35px; width: 100%; }
+.yoss-result .product-image { float: left; height: 48px; margin: 20px 4% 30px; overflow: hidden; width: 20%; }
+.yoss-result .product-name { display: block; float: left; font-size: 14px; font-weight: bold; line-height: 18px; margin: 16px 0 10px; position: relative; text-align: left; width: 72%; }
+.yoss-result .product-brand, .yoss-result .product-category { color: #777; float: left; font-size: 0.8em; margin: 0 10px 0 0; position: relative; }
+.yoss-result .product-brand a , .yoss-result .product-category a { color: #777; }
+.yoss-result .product-price { display: block; float: left; font-size: 1.6em; font-weight: bold; margin: 20px 0 10px; text-align: center; width: 100%; }
+.yoss-result .product-link { border: 1px solid; border-radius: 4px; display: inline-block; font-weight: bold; height: 26px; line-height: 26px; overflow: hidden; text-align: center; text-decoration: none; width: 85%; }',
+        'control_type' => waHtmlControl::TEXTAREA,
+    ),
 );

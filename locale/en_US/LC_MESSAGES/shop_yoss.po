@@ -108,3 +108,11 @@ msgstr ""
 msgid "Sorry, error accured"
 msgstr ""
 
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:62
+msgid "CSS styles"
+msgstr ""
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:63
+msgid "CSS styles of result block."
+msgstr ""
+

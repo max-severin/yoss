@@ -1,1 +1,22 @@
+<link href="{$wa_url}wa-content/js/codemirror/lib/codemirror.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="{$wa_url}wa-content/js/codemirror/lib/codemirror.js"></script>
+<script type="text/javascript" src="{$wa_url}wa-content/js/codemirror/mode/css/css.js"></script>
+
+<style type="text/css">
+    .CodeMirror{
+        border: 1px solid #eee;
+    }
+</style>
+
 {include file="../../../../../templates/actions/plugins/PluginsSettings.html"}
+
+<script type="text/javascript">
+    $(function() {
+        var c = CodeMirror.fromTextArea(document.getElementById('yoss_shop_yoss_result_css'), {
+            mode: "text/css",
+            tabMode: "indent",
+            height: "dynamic",
+            lineWrapping: true
+        });            
+    });
+</script>

@@ -105,3 +105,11 @@ msgstr "Ширина блока с результатами поиска."
 msgid "Sorry, error accured"
 msgstr "Извините, произошла ошибка"
 
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:62
+msgid "CSS styles"
+msgstr "CSS стили"
+
+#: /wa-apps/shop/plugins/yoss/lib/config/settings.php:63
+msgid "CSS styles of result block."
+msgstr "CSS стили блока с результатами."
+

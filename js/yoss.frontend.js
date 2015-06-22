@@ -53,8 +53,10 @@ var yossFrontend = (function () { 'use strict';
 			var inputParentWidth = t.parent().outerWidth();
 
 			var resultBlock = $('<div/>').addClass('yoss-result loading').css({
-				'left': inputOffset.left + 'px',
-				'top': (inputOffset.top + inputHeight) + 'px'
+				'left':       inputOffset.left + 'px',
+				'max-height': '{$yoss_settings.result_max_height}',
+				'top':        (inputOffset.top + inputHeight) + 'px',
+				'width':      '{$yoss_settings.result_width}'
 			});
 
 			if ($('.yoss-result').length > 0) {
@@ -67,7 +69,7 @@ var yossFrontend = (function () { 'use strict';
 
 			t.addClass('active');
 			$('body').prepend(resultBlock);
-
+			
 			$.ajax({
 				type: 'POST',
 				url: '{$search_url}',
