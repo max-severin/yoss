@@ -4,9 +4,9 @@
 Smart search plugin for Shop-Script 6
 
 ## Features
-Product ajax-search.
+Product search with ajax-loading of the results.
 
-Dynamically displays a list of products, their categories and brands. In the plugin settings you can set the number of displayed products.
+Dynamically displays a list of products, their categories and brands.
 
 You can enable lazy-loading scrolling of products in the search results. Or you can customize the number of displayed products in the settings.
 

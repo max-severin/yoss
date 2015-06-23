@@ -8,7 +8,7 @@ return array(
     'description' => /*_wp*/('Product ajax-search'),
     'img' => 'img/yoss.png',
     'vendor' => 1020720,
-    'version' => '1.0',
+    'version' => '1.0.0',
     'shop_settings' => true,
     'frontend' => true,
     'handlers' => array(
