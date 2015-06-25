@@ -30,12 +30,12 @@ msgstr ""
 msgid "Sorry, but nothing was found, try to change your query"
 msgstr ""
 
-#: /wa-apps/shop/plugins/yoss/lib/config/plugin.php:8
+#: /wa-apps/shop/plugins/yoss/lib/config/plugin.php:7
 msgid "Smart search"
 msgstr ""
 
-#: /wa-apps/shop/plugins/yoss/lib/config/plugin.php:9
-msgid "Product ajax-search"
+#: /wa-apps/shop/plugins/yoss/lib/config/plugin.php:8
+msgid "Product ajax-search with auto-loading"
 msgstr ""
 
 #: /wa-apps/shop/plugins/yoss/lib/config/settings.php:8

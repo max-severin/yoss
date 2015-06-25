@@ -5,7 +5,7 @@
  */
 return array(
     'name' => /*_wp*/('Smart search'),
-    'description' => /*_wp*/('Product ajax-search'),
+    'description' => /*_wp*/('Product ajax-search with auto-loading'),
     'img' => 'img/yoss.png',
     'vendor' => 1020720,
     'version' => '1.0.0',
