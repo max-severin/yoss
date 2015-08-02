@@ -25,14 +25,14 @@ return array(
         'description'  => _wp('Number of items in the search results.'),
         'value'        => '10',
         'placeholder'  => '10',
-        'control_type' => waHtmlControl::INPUT,
+        'control_type' => waHtmlControl::CUSTOM.' '.'shopYossPlugin::settingNumberControl',
     ),
     'min_char_count' => array(
         'title'        => _wp('Characters limit'),
         'description'  => _wp('Number of characters in the search query, after filling that triggered search.'),
         'value'        => '2',
         'placeholder'  => '2',
-        'control_type' => waHtmlControl::INPUT,
+        'control_type' => waHtmlControl::CUSTOM.' '.'shopYossPlugin::settingNumberControl',
     ),
     'lazy_loading' => array(
         'title'        => _wp('Lazy loading'),
@@ -49,7 +49,7 @@ return array(
         'description'  => _wp('Max height of search result block.'),
         'value'        => '400',
         'placeholder'  => '400',
-        'control_type' => waHtmlControl::INPUT,
+        'control_type' => waHtmlControl::CUSTOM.' '.'shopYossPlugin::settingNumberControl',
     ),
     'result_width' => array(
         'title'        => _wp('Width (px)'),
