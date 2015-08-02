@@ -139,12 +139,12 @@ var yossFrontend = (function () { 'use strict';
 				searchAjaxStatus = true;
 
 				var query = $('{$yoss_settings.id_in_html}').val();
-		        var nextPage = resultBlock.find('#next_page').val();
-		        var loadingBlock = $('<div/>').addClass('yoss-result-wrapper loading');
-		        var lastEl = resultBlock.find('.yoss-result-wrapper:last-child');
+				var nextPage = resultBlock.find('#next_page').val();
+				var loadingBlock = $('<div/>').addClass('yoss-result-wrapper loading');
+				var lastEl = resultBlock.find('.yoss-result-wrapper:last-child');
 
-		        if (query.length > 0 && nextPage > 0 ) {
-		        	lastEl.after(loadingBlock);
+				if (query.length > 0 && nextPage > 0 ) {
+					lastEl.after(loadingBlock);
 
 					$.ajax({		            	
 						type: 'POST',
