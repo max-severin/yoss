@@ -146,7 +146,7 @@ var yossFrontend = (function () { 'use strict';
 		        if (query.length > 0 && nextPage > 0 ) {
 		        	lastEl.after(loadingBlock);
 
-		            $.ajax({
+					$.ajax({		            	
 						type: 'POST',
 						url: '{$search_url}',
 						data: 'query='+query+'&page='+nextPage,
