@@ -10,25 +10,28 @@ class shopYossPlugin extends shopPlugin {
 
     /** Handler for frontend_head event: return plugin content in frontend. */
     public function frontendHead() {   
+        $html = '';
         $settings = $this->getSettings();
 
-        foreach ($settings as $id => $setting) {
-            if ($id != 'result_css') {
-                $settings[$id] = addslashes(htmlspecialchars($setting));
+        if ($settings['status'] === 'on') {
+            foreach ($settings as $id => $setting) {
+                if ($id != 'result_css') {
+                    $settings[$id] = addslashes(htmlspecialchars($setting));
+                }
+
+                $settings['result_max_height'] = (int)$settings['result_max_height'] . 'px';
+                
+                if ($settings['result_width'] != 'auto') { 
+                    $settings['result_width'] = (int)$settings['result_width'] . 'px';
+                }
             }
 
-            $settings['result_max_height'] = (int)$settings['result_max_height'] . 'px';
-            
-            if ($settings['result_width'] != 'auto') { 
-                $settings['result_width'] = (int)$settings['result_width'] . 'px';
-            }
+            $view = wa()->getView();
+            $view->assign('yoss_settings', $settings);
+            $view->assign('search_url', wa()->getRouteUrl('shop/frontend/smartsearch'));
+            $html = $view->fetch($this->path.'/templates/Frontend.html');
         }
-
-        $view = wa()->getView();
-        $view->assign('yoss_settings', $settings);
-        $view->assign('search_url', wa()->getRouteUrl('shop/frontend/smartsearch'));
-        $html = $view->fetch($this->path.'/templates/Frontend.html');
-
+        
         return $html;
     }
 

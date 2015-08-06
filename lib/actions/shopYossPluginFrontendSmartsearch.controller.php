@@ -10,7 +10,7 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
         $app_settings_model = new waAppSettingsModel();
         $settings = $app_settings_model->get(array('shop', 'yoss'));
 
-        if ( $settings['status'] ) {
+        if ( $settings['status'] === 'on' ) {
 
             $query = waRequest::post('query', '', waRequest::TYPE_STRING_TRIM);
             $page = waRequest::post('page', 1, 'int');
