@@ -65,6 +65,7 @@ return array(
 .yoss-result.no-products { color: #444; line-height: 40px; text-align: center; width: inherit; }
 .yoss-result.yoss-error { color: #de4d2c; line-height: 40px; text-align: center; width: inherit; }
 .yoss-result .yoss-result-wrapper { border-bottom: 1px dotted #dbdbdb; float: left; width: 100%; }
+.yoss-result .yoss-result-wrapper:last-child { border-bottom: 0 none; }
 .yoss-result .yoss-result-product-count { display: block; float: left; font-size: 16px; font-weight: bold; margin: 29px 0; position: relative; text-align: center; width: 40%; }
 .yoss-result .yoss-result-show-all { display: block; float: left; font-weight: normal; margin: 29px 0; position: relative; text-align: left; width: 60%; }
 .yoss-result .yoss-result-left { float: left; width: 75%; }

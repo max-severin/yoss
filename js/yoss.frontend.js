@@ -75,9 +75,7 @@ var yossFrontend = (function () { 'use strict';
 				type: 'POST',
 				url: '{$search_url}',
 				data: 'query='+t.val()+'&page=1',
-				success: function (response) {
-
-					var result = $.parseJSON(response);
+				success: function (result) {
 
 					resultBlock.removeClass('loading');
 
