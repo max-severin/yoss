@@ -8,7 +8,7 @@
 var yossFrontend = (function () { 'use strict';
 	//---------------- BEGIN MODULE SCOPE VARIABLES ---------------
 	var
-		getProductBlock, onSearchInputKeyup, searchAjaxStatus, onResultBlockScroll, onNonResultBlockClick, initModule;
+		getProductBlock, keyupTimeout, ajaxSendQuery, onSearchInputKeyup, searchAjaxStatus, onResultBlockScroll, onNonResultBlockClick, initModule;
 	//----------------- END MODULE SCOPE VARIABLES ----------------
 
 	//--------------------- BEGIN DOM METHODS ---------------------
@@ -43,6 +43,54 @@ var yossFrontend = (function () { 'use strict';
 	//--------------------- END DOM METHODS -----------------------
 
 	//------------------- BEGIN EVENT HANDLERS --------------------
+	ajaxSendQuery = function (t, resultBlock) {
+		$.ajax({
+			type: 'POST',
+			url: '{$search_url}',
+			data: 'query='+t.val()+'&page=1',
+			success: function (result) {
+
+				resultBlock.removeClass('loading');
+
+				if (result.status === 'ok' && result.data !== false) {
+
+					if (result.data.products.length > 0) {
+
+						if (result.data.next_page !== false) {
+							var nextPage = $('<input/>').attr('type', 'hidden').attr('id', 'next_page').val(result.data.next_page);
+						} else {
+							var nextPage = $('<input/>').attr('type', 'hidden').attr('id', 'next_page').val('0');
+						}
+						resultBlock.append(nextPage);
+
+						var wrapperBlock = $('<div/>').addClass('yoss-result-wrapper');
+						var productCountSpan = $('<span/>').addClass('yoss-result-product-count').html('{_wp("Products found")}: ' + result.data.product_count);
+						var searchAllUrlLink = $('<a/>').addClass('yoss-result-show-all').attr('href', result.data.searh_all_url).html('{_wp("to results")}');
+
+						wrapperBlock.append(productCountSpan, searchAllUrlLink);
+						resultBlock.append(wrapperBlock);
+
+						for(var key in result.data.products) {
+							var productBlock = getProductBlock(result.data.products[key]);
+							resultBlock.append(productBlock);
+						}
+
+
+					} else {
+
+						resultBlock.addClass('no-products').html('{_wp("Sorry, but nothing was found, try to change your query")}');
+
+					}
+
+				} else {
+
+					resultBlock.addClass('yoss-error').html('{_wp("Sorry, error accured")}');
+
+				}
+			}
+		}, 'json');
+	};
+
 	onSearchInputKeyup = function (event) {
 		var t = $(this);
 		searchAjaxStatus = false;
@@ -70,52 +118,13 @@ var yossFrontend = (function () { 'use strict';
 
 			t.addClass('active');
 			$('body').prepend(resultBlock);
-			
-			$.ajax({
-				type: 'POST',
-				url: '{$search_url}',
-				data: 'query='+t.val()+'&page=1',
-				success: function (result) {
 
-					resultBlock.removeClass('loading');
+			if (keyupTimeout) {
+				clearTimeout(keyupTimeout);
+				keyupTimeout = null;
+			}
 
-					if (result.status === 'ok' && result.data !== false) {
-
-						if (result.data.products.length > 0) {
-
-							if (result.data.next_page !== false) {
-								var nextPage = $('<input/>').attr('type', 'hidden').attr('id', 'next_page').val(result.data.next_page);
-							} else {
-								var nextPage = $('<input/>').attr('type', 'hidden').attr('id', 'next_page').val('0');
-							}
-							resultBlock.append(nextPage);
-
-							var wrapperBlock = $('<div/>').addClass('yoss-result-wrapper');
-							var productCountSpan = $('<span/>').addClass('yoss-result-product-count').html('{_wp("Products found")}: ' + result.data.product_count);
-							var searchAllUrlLink = $('<a/>').addClass('yoss-result-show-all').attr('href', result.data.searh_all_url).html('{_wp("to results")}');
-
-							wrapperBlock.append(productCountSpan, searchAllUrlLink);
-							resultBlock.append(wrapperBlock);
-
-							for(var key in result.data.products) {
-								var productBlock = getProductBlock(result.data.products[key]);
-								resultBlock.append(productBlock);
-							}
-
-
-						} else {
-
-							resultBlock.addClass('no-products').html('{_wp("Sorry, but nothing was found, try to change your query")}');
-
-						}
-
-					} else {
-
-						resultBlock.addClass('yoss-error').html('{_wp("Sorry, error accured")}');
-
-					}
-				}
-			}, 'json');
+			keyupTimeout = setTimeout (function() { ajaxSendQuery(t, resultBlock); }, 700);			
 			
 			{if $yoss_settings.lazy_loading === 'on'}
 				$('.yoss-result').scroll(onResultBlockScroll);
@@ -127,8 +136,9 @@ var yossFrontend = (function () { 'use strict';
 	        $('.yoss-result').remove();
 			return false;
 
-		}
+		}	
 	};
+
 	onResultBlockScroll = function (event) {
 		var resultBlock = $(this);
 
@@ -177,6 +187,7 @@ var yossFrontend = (function () { 'use strict';
 			}
 	    }
 	};
+
 	onNonResultBlockClick = function (event) {
 		var div = $(event.data);
 
@@ -187,7 +198,7 @@ var yossFrontend = (function () { 'use strict';
 	//------------------- END EVENT HANDLERS ----------------------
 
 	//------------------- BEGIN PUBLIC METHODS --------------------
-	initModule = function () {		
+	initModule = function () {
 		$(document).on('keyup', '{$yoss_settings.id_in_html}', onSearchInputKeyup);
 
 		$(document).mouseup('.yoss-result', onNonResultBlockClick);
