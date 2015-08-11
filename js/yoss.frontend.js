@@ -158,10 +158,7 @@ var yossFrontend = (function () { 'use strict';
 						type: 'POST',
 						url: '{$search_url}',
 						data: 'query='+query+'&page='+nextPage,
-						success: function (response) {
-
-							var result = $.parseJSON(response);
-
+						success: function (result) {
 							searchAjaxStatus = false;
 
 							$('.yoss-result-wrapper.loading').remove();
