@@ -12,7 +12,8 @@ You can enable lazy-loading scrolling of products in the search results. Or you 
 
 ## Installing
 ### Auto
-...
+Install plugin from webasyst store: [SmartSearch-en](https://www.webasyst.com/store/plugin/shop/yoss/) or [SmartSearch-ru](https://www.webasyst.ru/store/plugin/shop/yoss/).  
+Or you can install plugin from Installer app in backend.
 
 ### Manual
 1. Get the code into your web server's folder /PATH_TO_WEBASYST/wa-apps/shop/plugins
