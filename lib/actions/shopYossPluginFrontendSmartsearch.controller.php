@@ -57,7 +57,7 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
                     $category = $category_model->getById($p['category_id']);
                     $res_category = '';
                     if ($category) {
-                        $res_category = '<a href="' . wa()->getRouteUrl('/frontend/category', array('category_url' => $category['full_url'])) . '">' .$category['name'] . '</a>';
+                        $res_category = '<a href="' . wa()->getRouteUrl('/frontend/category', array('category_url' => waRequest::param('url_type') == 1 ? $category['url'] : $category['full_url'])) . '">' .$category['name'] . '</a>';
                     }              
 
                     $result['products'][] = array(
