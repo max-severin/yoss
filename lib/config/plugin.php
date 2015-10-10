@@ -8,8 +8,9 @@ return array(
     'description' => /*_wp*/('Product ajax-search with auto-loading'),
     'img' => 'img/yoss.png',
     'vendor' => 1020720,
-    'version' => '1.0.1',
+    'version' => '1.0.2',
     'shop_settings' => true,
+    'custom_settings' => true,
     'frontend' => true,
     'handlers' => array(
         'frontend_head' => 'frontendHead',
