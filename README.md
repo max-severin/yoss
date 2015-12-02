@@ -1,4 +1,8 @@
-# yoss
+# yoss - Smart search
+
+![yoss-frontend](https://www.webasyst.com/wa-data/public/updates/img/80/1580/4506/4506.970.png)
+
+![yoss-settings](https://www.webasyst.com/wa-data/public/updates/img/80/1580/4507/4507.970.png)
 
 ## Description
 Smart search plugin for Shop-Script 6
