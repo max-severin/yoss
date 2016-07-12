@@ -13,7 +13,7 @@ class shopYossPlugin extends shopPlugin {
         $html = '';
         $settings = $this->getSettings();
 
-        if ($settings['status'] === 'on') {
+        if ($settings['status'] === 'on' && $settings['frontend_head_status'] === 'on') {
             foreach ($settings as $id => $setting) {
                 if ($id != 'result_css') {
                     $settings[$id] = addslashes(htmlspecialchars($setting));
@@ -31,6 +31,42 @@ class shopYossPlugin extends shopPlugin {
             $view->assign('search_url', wa()->getRouteUrl('shop/frontend/smartsearch'));
             $html = $view->fetch($this->path.'/templates/Frontend.html');
         }
+        
+        return $html;
+    }
+
+
+    /**
+     * Frontend method that initiates plugin
+     * @return string
+     */
+    static function display() {
+        $html = '';
+        $app_settings_model = new waAppSettingsModel();
+        $settings = $app_settings_model->get(array('shop', 'yoss'));
+
+        if ($settings['status'] === 'on' && $settings['frontend_head_status'] === 'off') {
+            
+            waLocale::loadByDomain(array('shop', 'yoss'));
+            waSystem::pushActivePlugin('yoss', 'shop');
+
+            foreach ($settings as $id => $setting) {
+                if ($id != 'result_css') {
+                    $settings[$id] = addslashes(htmlspecialchars($setting));
+                }
+
+                $settings['result_max_height'] = (int)$settings['result_max_height'] . 'px';
+                
+                if ($settings['result_width'] != 'auto') { 
+                    $settings['result_width'] = (int)$settings['result_width'] . 'px';
+                }
+            }
+
+            $view = wa()->getView();
+            $view->assign('yoss_settings', $settings);
+            $view->assign('search_url', wa()->getRouteUrl('shop/frontend/smartsearch'));
+            $html = $view->fetch(realpath(dirname(__FILE__)."/../").'/templates/Frontend.html');
+        }   
         
         return $html;
     }

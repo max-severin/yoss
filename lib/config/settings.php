@@ -13,6 +13,16 @@ return array(
             'on'  => _wp('On'),
         ),
     ),
+    'frontend_head_status' => array(
+        'title'        => _wp('Status of frontend_head hook'),
+        'description'  => _wp('Turn on to automatically output plugin via frontend_head hook.'),
+        'value'        => 'on',
+        'control_type' => waHtmlControl::SELECT,
+        'options'      => array(
+            'off' => _wp('Off'),
+            'on'  => _wp('On'),
+        ),
+    ),
     'id_in_html' => array(
         'title'        => _wp('Search input selector'),
         'description'  => _wp('Specify the ID or class of the html element,<br />when filling which will open a search results.<br />Must be like «<b>#search</b>» or «<b>.search</b>».'),
