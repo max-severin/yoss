@@ -64,7 +64,7 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
                         "name" => $p['name'],
                         "url" => $p['frontend_url'],
                         "image" => ($p['image_id'] ? "<img src='" . shopImage::getUrl(array("product_id" => $p['id'], "id" => $p['image_id'], "ext" => $p['ext']), "48x48") . "' />" : ""),
-                        "price" => shop_currency_html($p['price'], true),
+                        "price" => shop_currency_html($p['price'], $p['currency']),
                         "brands" => $brands,
                         "category" => $res_category,
                     );
