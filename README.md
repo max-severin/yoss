@@ -5,7 +5,7 @@
 ![yoss-settings](https://www.webasyst.com/wa-data/public/updates/img/80/1580/4507/4507.970.png)
 
 ## Description
-Smart search plugin for Shop-Script 6
+Smart search plugin for Shop-Script
 
 ## Features
 Product search with ajax-loading of the results.
