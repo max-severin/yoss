@@ -123,19 +123,6 @@ msgstr ""
 msgid "CSS styles of result block."
 msgstr ""
 
-#: /wa-apps/shop/plugins/yoss/templates/actions/settings/Settings.html:17
-#: /wa-apps/shop/plugins/yoss/templates/actions/settings/Settings.html:18
-msgid "//www.webasyst.com"
-msgstr ""
-
-#: /wa-apps/shop/plugins/yoss/templates/actions/settings/Settings.html:17
-msgid "Give <b>feedback</b>"
-msgstr ""
-
-#: /wa-apps/shop/plugins/yoss/templates/actions/settings/Settings.html:18
-msgid "Other <b>products</b><br /> from the developer"
-msgstr ""
-
 #: /wa-apps/shop/plugins/yoss/templates/actions/settings/Settings.html:19
 msgid "For all questions"
 msgstr ""
