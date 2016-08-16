@@ -58,12 +58,20 @@ class shopYossPluginFrontendSmartsearchController extends waJsonController {
                     $res_category = '';
                     if ($category) {
                         $res_category = '<a href="' . wa()->getRouteUrl('/frontend/category', array('category_url' => waRequest::param('url_type') == 1 ? $category['url'] : $category['full_url'])) . '">' .$category['name'] . '</a>';
-                    }              
+                    }    
+
+                    $use_filename = wa('shop')->getConfig()->getOption('image_filename');
+
+                    if (!$use_filename) {
+                        $image = ($p['image_id'] ? "<img src='" . shopImage::getUrl(array("product_id" => $p['id'], "id" => $p['image_id'], "ext" => $p['ext']), "48x48") . "' />" : "");
+                    } else {
+                        $image = ($p['image_filename'] ? "<img src='" . shopImage::getUrl(array("product_id" => $p['id'], "filename" => $p['image_filename'], "id" => $p['image_id'], "ext" => $p['ext']), "48x48") . "' />" : "");
+                    }          
 
                     $result['products'][] = array(
                         "name" => $p['name'],
                         "url" => $p['frontend_url'],
-                        "image" => ($p['image_id'] ? "<img src='" . shopImage::getUrl(array("product_id" => $p['id'], "id" => $p['image_id'], "ext" => $p['ext']), "48x48") . "' />" : ""),
+                        "image" => $image,
                         "price" => shop_currency_html($p['price'], $p['currency']),
                         "brands" => $brands,
                         "category" => $res_category,
