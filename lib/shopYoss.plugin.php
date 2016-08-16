@@ -66,6 +66,8 @@ class shopYossPlugin extends shopPlugin {
             $view->assign('yoss_settings', $settings);
             $view->assign('search_url', wa()->getRouteUrl('shop/frontend/smartsearch'));
             $html = $view->fetch(realpath(dirname(__FILE__)."/../").'/templates/Frontend.html');
+
+            waSystem::popActivePlugin();
         }   
         
         return $html;
